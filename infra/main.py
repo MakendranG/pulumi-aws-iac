@@ -1,6 +1,6 @@
 import pulumi
-from infra import rds, s3, security_group
+from infra.s3 import s3_bucket
+from infra.rds import db_instance  # ✅ Ensure correct import
 
-# Export outputs
-pulumi.export("RDSInstanceEndpoint", rds.instance.endpoint)
-pulumi.export("BucketName", s3.bucket.bucket)
+pulumi.export("BucketName", s3_bucket.bucket)
+pulumi.export("RDSInstanceEndpoint", db_instance.endpoint)

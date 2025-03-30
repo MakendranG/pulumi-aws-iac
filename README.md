@@ -33,27 +33,33 @@ pulumi new aws-python -y
 git clone https://github.com/MakendranG/pulumi-aws-iac.git
 ```
 
-### **4️⃣ Ensure the correct entry point**
+### **4️⃣ Move infra folder and clean up**
+```sh
+mv pulumi-aws-iac/infra .
+rm -rf pulumi-aws-iac
+```
+
+### **5️⃣ Ensure the correct entry point**
 ```sh
 echo 'import infra.main' > __main__.py
 ```
 
-### **5️⃣ Configure Pulumi secrets**
+### **6️⃣ Configure Pulumi secrets**
 ```sh
 pulumi config set dbPassword 'my-secret-password' --secret
 ```
 
-### **6️⃣ Refresh the stack to sync state**
+### **7️⃣ Refresh the stack to sync state**
 ```sh
 pulumi refresh
 ```
 
-### **7️⃣ Preview the deployment**
+### **8️⃣ Preview the deployment**
 ```sh
 pulumi preview
 ```
 
-### **8️⃣ Deploy the infrastructure**
+### **9️⃣ Deploy the infrastructure**
 ```sh
 pulumi up
 ```
@@ -77,6 +83,11 @@ pulumi destroy
 To completely remove the stack:
 ```sh
 pulumi stack rm
+```
+
+To delete the project folder completely:
+```sh
+cd .. && rm -rf esc-challenge
 ```
 
 ---

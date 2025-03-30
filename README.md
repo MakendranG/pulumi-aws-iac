@@ -5,87 +5,111 @@ This repository provides a streamlined approach to setting up AWS infrastructure
 ---
 
 ## **📌 Prerequisites**
+
 Before proceeding, ensure you have the following installed:
 
-✅ Pulumi CLI ([Installation Guide](https://www.pulumi.com/docs/install/))  
-✅ AWS CLI configured with appropriate credentials ([Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html))  
-✅ Python 3 and `pip` ([Download](https://www.python.org/downloads/))  
-✅ Git ([Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))  
+✅ Pulumi CLI ([Installation Guide](https://www.pulumi.com/docs/install/))\
+✅ AWS CLI configured with appropriate credentials ([Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html))\
+✅ Python 3 and `pip` ([Download](https://www.python.org/downloads/))\
+✅ Git ([Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))
 
 ---
 
-## **📖 Setup Process**
+## **📚 Setup Process**
 
 Follow these steps to set up your Pulumi AWS project:
 
 ### **1️⃣ Create a new project directory**
+
 ```sh
 mkdir esc-challenge && cd esc-challenge
 ```
 
 ### **2️⃣ Initialize a new Pulumi AWS project**
+
 ```sh
 pulumi new aws-python -y
 ```
 
 ### **3️⃣ Clone the repository**
+
 ```sh
 git clone https://github.com/MakendranG/pulumi-aws-iac.git
 ```
 
 ### **4️⃣ Move infra folder and clean up**
+
 ```sh
 mv pulumi-aws-iac/infra .
 rm -rf pulumi-aws-iac
 ```
 
 ### **5️⃣ Ensure the correct entry point**
+
 ```sh
 echo 'import infra.main' > __main__.py
 ```
 
 ### **6️⃣ Configure Pulumi secrets**
+
 ```sh
 pulumi config set dbPassword 'my-secret-password' --secret
 ```
 
 ### **7️⃣ Refresh the stack to sync state**
+
 ```sh
 pulumi refresh
 ```
 
 ### **8️⃣ Preview the deployment**
+
 ```sh
 pulumi preview
 ```
 
 ### **9️⃣ Deploy the infrastructure**
+
 ```sh
 pulumi up
 ```
+
+Once `pulumi up` successfully completes, you can use the below command to connect to the RDS endpoint:
+
+```sh
+mysql -h $(pulumi stack output RDSInstanceEndpoint | cut -d':' -f1) -u admin -p
+```
+
+Enter the password when prompted.
 
 ---
 
 ## **⚙️ Managing Your Stack**
 
 ### **🔍 Check Outputs**
+
 After deployment, retrieve outputs using:
+
 ```sh
 pulumi stack output
 ```
 
 ### **🗑️ Destroying Resources**
+
 To remove all resources:
+
 ```sh
 pulumi destroy
 ```
 
 To completely remove the stack:
+
 ```sh
 pulumi stack rm
 ```
 
 To delete the project folder completely:
+
 ```sh
 cd .. && rm -rf esc-challenge
 ```
@@ -93,6 +117,7 @@ cd .. && rm -rf esc-challenge
 ---
 
 ## **🗂 Project Structure**
+
 ```sh
 esc-challenge/
 │── infra/
@@ -114,16 +139,18 @@ This structure ensures modularity and maintainability for AWS infrastructure usi
 ## **🛠️ Troubleshooting**
 
 ⚠️ **Authentication Issues:** If `pulumi up` fails, verify your AWS credentials:
+
 ```sh
 aws sts get-caller-identity
 ```
 
 ⚠️ **Missing Dependencies:** If errors occur due to missing dependencies, install them:
+
 ```sh
 pip install -r requirements.txt
 ```
 
-⚠️ **ModuleNotFoundError: pulumi_aws**
+⚠️ **ModuleNotFoundError: pulumi\_aws**
 
 1. Activate the virtual environment:
    ```sh
@@ -150,9 +177,10 @@ pip install -r requirements.txt
    ```
 
 ⚠️ **For debugging:**
+
 ```sh
 pulumi logs -f
 ```
 
-📚 **For more details, refer to [Pulumi Documentation](https://www.pulumi.com/docs/).** 🚀
+📚 **For more details, refer to **[**Pulumi Documentation**](https://www.pulumi.com/docs/)**.** 🚀
 

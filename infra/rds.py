@@ -1,11 +1,13 @@
 import pulumi
 import pulumi_aws as aws
-from infra.config import aws_region, db_password
+from infra.config import aws_provider
 from infra.security_group import security_group
 
-aws_provider = aws.Provider("aws", region=aws_region)
+config = pulumi.Config()
+db_password = config.require_secret("dbPassword")
 
-instance = aws.rds.Instance(
+# ✅ Create the RDS instance
+db_instance = aws.rds.Instance(
     "my-rds-instance",
     allocated_storage=20,
     engine="mysql",
@@ -16,5 +18,7 @@ instance = aws.rds.Instance(
     vpc_security_group_ids=[security_group.id],
     skip_final_snapshot=True,
     publicly_accessible=True,
-    opts=pulumi.ResourceOptions(provider=aws_provider)
+    opts=pulumi.ResourceOptions(provider=aws_provider),
 )
+
+pulumi.export("RDSInstanceEndpoint", db_instance.endpoint)  # ✅ Correct export

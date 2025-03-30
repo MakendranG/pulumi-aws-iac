@@ -1,20 +1,20 @@
-# Pulumi AWS Infrastructure as Code (IaC) Setup
+# 🚀 Pulumi AWS Infrastructure as Code (IaC) Setup
 
 This repository provides a streamlined approach to setting up AWS infrastructure using Pulumi with best practices for managing configurations and resources.
 
 ---
 
-## **Prerequisites**
+## **📌 Prerequisites**
 Before proceeding, ensure you have the following installed:
 
-- Pulumi CLI ([Installation Guide](https://www.pulumi.com/docs/install/))
-- AWS CLI configured with appropriate credentials ([Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html))
-- Python 3 and `pip` ([Download](https://www.python.org/downloads/))
-- Git ([Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))
+✅ Pulumi CLI ([Installation Guide](https://www.pulumi.com/docs/install/))  
+✅ AWS CLI configured with appropriate credentials ([Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html))  
+✅ Python 3 and `pip` ([Download](https://www.python.org/downloads/))  
+✅ Git ([Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git))  
 
 ---
 
-## **Setup Process**
+## **📖 Setup Process**
 
 Follow these steps to set up your Pulumi AWS project:
 
@@ -66,15 +66,15 @@ pulumi up
 
 ---
 
-## **Managing Your Stack**
+## **⚙️ Managing Your Stack**
 
-### **Check Outputs**
+### **🔍 Check Outputs**
 After deployment, retrieve outputs using:
 ```sh
 pulumi stack output
 ```
 
-### **Destroying Resources**
+### **🗑️ Destroying Resources**
 To remove all resources:
 ```sh
 pulumi destroy
@@ -92,7 +92,7 @@ cd .. && rm -rf esc-challenge
 
 ---
 
-## **Project Structure**
+## **🗂 Project Structure**
 ```sh
 esc-challenge/
 │── infra/
@@ -111,44 +111,48 @@ This structure ensures modularity and maintainability for AWS infrastructure usi
 
 ---
 
-## **Troubleshooting**
+## **🛠️ Troubleshooting**
 
-- If `pulumi up` fails due to authentication issues, verify your AWS credentials:
-  ```sh
-  aws sts get-caller-identity
-  ```
-- If errors occur due to missing dependencies, install them:
-  ```sh
-  pip install -r requirements.txt
-  ```
-- If `pulumi_aws` is not found, follow these steps:
-  1. Activate the virtual environment:
-     ```sh
-     source venv/bin/activate  # For Linux/macOS
-     ```
-     ```sh
-     venv\Scripts\activate  # For Windows
-     ```
-  2. Reinstall `pulumi_aws`:
-     ```sh
-     pip install --force-reinstall pulumi pulumi-aws
-     ```
-  3. Verify installation:
-     ```sh
-     pip list | grep pulumi-aws
-     ```
-  4. If not installed, try:
-     ```sh
-     pip install pulumi-aws --user
-     ```
-  5. Retry running Pulumi:
-     ```sh
-     pulumi up
-     ```
-- For debugging, use:
-  ```sh
-  pulumi logs -f
-  ```
+⚠️ **Authentication Issues:** If `pulumi up` fails, verify your AWS credentials:
+```sh
+aws sts get-caller-identity
+```
 
-For more details, refer to [Pulumi Documentation](https://www.pulumi.com/docs/).
+⚠️ **Missing Dependencies:** If errors occur due to missing dependencies, install them:
+```sh
+pip install -r requirements.txt
+```
+
+⚠️ **ModuleNotFoundError: pulumi_aws**
+
+1. Activate the virtual environment:
+   ```sh
+   source venv/bin/activate  # For Linux/macOS
+   ```
+   ```sh
+   venv\Scripts\activate  # For Windows
+   ```
+2. Reinstall `pulumi_aws`:
+   ```sh
+   pip install --force-reinstall pulumi pulumi-aws
+   ```
+3. Verify installation:
+   ```sh
+   pip list | grep pulumi-aws
+   ```
+4. If not installed, try:
+   ```sh
+   pip install pulumi-aws --user
+   ```
+5. Retry running Pulumi:
+   ```sh
+   pulumi up
+   ```
+
+⚠️ **For debugging:**
+```sh
+pulumi logs -f
+```
+
+📚 **For more details, refer to [Pulumi Documentation](https://www.pulumi.com/docs/).** 🚀
 

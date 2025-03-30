@@ -1,7 +1,11 @@
 import pulumi
 import pulumi_aws as aws
-from infra.config import aws_region
+from infra.config import aws_provider  # Use the shared provider
 
-aws_provider = aws.Provider("aws", region=aws_region)
+s3_bucket = aws.s3.Bucket(
+    "my-bucket",
+    bucket_prefix="esc-config-",
+    opts=pulumi.ResourceOptions(provider=aws_provider)  # Ensure provider consistency
+)
 
-bucket = aws.s3.Bucket("my-bucket", bucket_prefix="esc-config-", opts=pulumi.ResourceOptions(provider=aws_provider))
+pulumi.export("BucketName", s3_bucket.bucket)
